@@ -1,6 +1,10 @@
 name: anywhere_mobile
-description: Anywhere Mobile Coding Exercise
+description: Anywhere Mobile Candidate Coding Exercise
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -16,7 +20,7 @@ flutter:
   uses-material-design: true
 
 flavorizr:
-  ide: "vscode",
+  ide: "vscode"
   flavors:
     simpsons:
       app:
@@ -24,7 +28,7 @@ flavorizr:
       android:
         applicationId: "com.sample.simpsonsviewer"
       ios:
-        bundleId: "com.sample.simpsonsviewer" 
+        bundleId: "com.sample.simpsonsviewer"
     wire:
       app:
         name: "The Wire Character Viewer"
