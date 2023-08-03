@@ -1,1 +1,21 @@
-{"version":"0.2.0","configurations":[{"name":"simpsons Debug","request":"launch","type":"dart","flutterMode":"debug","args":["--flavor","simpsons"],"program":"lib/main_simpsons.dart"},{"name":"simpsons Profile","request":"launch","type":"dart","flutterMode":"profile","args":["--flavor","simpsons"],"program":"lib/main_simpsons.dart"},{"name":"simpsons Release","request":"launch","type":"dart","flutterMode":"release","args":["--flavor","simpsons"],"program":"lib/main_simpsons.dart"},{"name":"wire Debug","request":"launch","type":"dart","flutterMode":"debug","args":["--flavor","wire"],"program":"lib/main_wire.dart"},{"name":"wire Profile","request":"launch","type":"dart","flutterMode":"profile","args":["--flavor","wire"],"program":"lib/main_wire.dart"},{"name":"wire Release","request":"launch","type":"dart","flutterMode":"release","args":["--flavor","wire"],"program":"lib/main_wire.dart"}]}
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Simpsons - Debug",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "debug",
+      "args": ["--flavor", "simpsons"],
+      "program": "lib/main_simpsons.dart"
+    },
+    {
+      "name": "Wire - Debug",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "debug",
+      "args": ["--flavor", "wire"],
+      "program": "lib/main_wire.dart"
+    }
+  ]
+}
