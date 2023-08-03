@@ -9,13 +9,14 @@ import 'package:character_repository/src/models/error.dart';
 import 'package:character_repository/src/models/interface.dart';
 import 'package:dartz/dartz.dart' show Either, left, right;
 import 'package:dio/dio.dart' show Dio;
+import 'package:rxdart/rxdart.dart' show BehaviorSubject;
 
 /// {@template character_repository}
 /// A Very Good Project created by Very Good CLI.
 /// {@endtemplate}
 class CharacterRepository implements ICharacterRepository {
   /// {@macro character_repository}
-  const CharacterRepository({
+  CharacterRepository({
     required String query,
     required String title,
   })  : _query = query,
@@ -23,6 +24,10 @@ class CharacterRepository implements ICharacterRepository {
 
   final String _query;
   final String _title;
+
+  final _characterListController = BehaviorSubject<List<Character>?>.seeded(
+    null,
+  );
 
   /// Base API Url
   static const apiUrl = 'http://api.duckduckgo.com';
@@ -33,6 +38,9 @@ class CharacterRepository implements ICharacterRepository {
 
   @override
   String get title => _title;
+
+  @override
+  List<Character>? get originalList => _characterListController.value;
 
   @override
   Future<Either<List<Character>, CharacterError Function()>> //
@@ -50,6 +58,7 @@ class CharacterRepository implements ICharacterRepository {
         characters.add(character);
       }
 
+      _characterListController.add(characters);
       return left(characters);
     } on Exception catch (error, stackTrace) {
       devtools.log(

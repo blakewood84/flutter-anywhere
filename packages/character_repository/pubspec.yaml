@@ -18,3 +18,4 @@ dependencies:
   dio: ^5.3.2
   equatable: ^2.0.5
   freezed_annotation: ^2.4.1
+  rxdart: ^0.27.7

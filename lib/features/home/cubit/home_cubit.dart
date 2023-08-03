@@ -38,4 +38,27 @@ class HomeCubit extends Cubit<HomeState> {
       ),
     );
   }
+
+  void searchCharacters(String query) {
+    if (query.isEmpty) {
+      emit(
+        state.copyWith(
+          characters: _repository.originalList ?? [],
+        ),
+      );
+      return;
+    }
+
+    final response = _repository.originalList
+        ?.where(
+          (character) => character.title.contains(query) || character.description.contains(query),
+        )
+        .toList();
+
+    emit(
+      state.copyWith(
+        characters: response ?? _repository.originalList ?? [],
+      ),
+    );
+  }
 }

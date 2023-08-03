@@ -24,6 +24,9 @@ class SearchWidget extends StatelessWidget {
                 ),
               ),
               elevation: MaterialStateProperty.all(.5),
+              onChanged: (value) {
+                context.read<HomeCubit>().searchCharacters(value);
+              },
             ),
           ],
         ),
