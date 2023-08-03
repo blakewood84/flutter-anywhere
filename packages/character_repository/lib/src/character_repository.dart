@@ -27,7 +27,8 @@ class CharacterRepository implements ICharacterRepository {
   static const apiUrl = 'http://api.duckduckgo.com';
 
   /// Base Asset Image Url
-  static const baseUrl = 'https://duckduckgo.com/';
+  @override
+  String get baseUrl => 'https://duckduckgo.com/';
 
   @override
   String get title => _title;

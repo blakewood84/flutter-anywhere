@@ -12,4 +12,6 @@ abstract interface class ICharacterRepository {
 
   /// Title of the type of characters being fetched.
   String get title;
+
+  String get baseUrl;
 }

@@ -31,6 +31,7 @@ class HomeView extends StatelessWidget {
         return Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
+            centerTitle: true,
             backgroundColor: Colors.white.withOpacity(.55),
             elevation: 0,
             title: Text(
@@ -95,6 +96,7 @@ class _CharacterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white,
       elevation: .5,
       child: InkWell(
         onTap: () => Navigator.of(context).push(
