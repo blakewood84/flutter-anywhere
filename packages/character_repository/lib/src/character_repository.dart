@@ -1,4 +1,5 @@
-// ignore_for_file: inference_failure_on_function_invocation, avoid_dynamic_calls
+// ignore_for_file: inference_failure_on_function_invocation
+// ignore_for_file: avoid_dynamic_calls
 
 import 'dart:convert';
 import 'dart:developer' as devtools;
