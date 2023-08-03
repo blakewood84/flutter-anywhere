@@ -11,6 +11,10 @@ class DetailsView extends StatelessWidget {
     final character = context.read<DetailsCubit>().character;
     final baseUrl = context.read<ICharacterRepository>().baseUrl;
 
+    final description = character.description.split('-').length > 1
+        ? character.description.split('-')[1].trim()
+        : character.description;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -26,51 +30,55 @@ class DetailsView extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return SizedBox(
-            width: constraints.maxWidth,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Card(
-                    elevation: 0,
-                    child: Container(
-                      constraints: BoxConstraints(
-                        minHeight: 200,
-                        minWidth: constraints.maxWidth,
+      body: SingleChildScrollView(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SizedBox(
+              width: constraints.maxWidth,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Card(
+                      elevation: 0,
+                      child: Container(
+                        constraints: BoxConstraints(
+                          minHeight: 200,
+                          maxHeight: 250,
+                          minWidth: constraints.maxWidth,
+                        ),
+                        child: character.image.isNotEmpty
+                            ? Image.network(
+                                '$baseUrl${character.image}',
+                                fit: BoxFit.contain,
+                              )
+                            : const _NoImage(),
                       ),
-                      child: character.image.isNotEmpty
-                          ? Image.network(
-                              '$baseUrl${character.image}',
-                            )
-                          : const _NoImage(),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Card(
-                    elevation: 0,
-                    child: Container(
-                      constraints: BoxConstraints(
-                        minWidth: constraints.maxWidth,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          character.description.trim(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Card(
+                      elevation: 0,
+                      child: Container(
+                        constraints: BoxConstraints(
+                          minWidth: constraints.maxWidth,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Text(
+                            description,
+                          ),
                         ),
                       ),
                     ),
-                  )
-                ],
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
