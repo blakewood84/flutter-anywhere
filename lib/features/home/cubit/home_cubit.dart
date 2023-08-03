@@ -16,6 +16,6 @@ class HomeCubit extends Cubit<HomeState> {
   final ICharacterRepository _repository;
 
   void _initialize() async {
-    _repository.fetchCharacters();
+    await _repository.fetchCharacters();
   }
 }
