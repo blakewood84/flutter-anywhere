@@ -13,15 +13,21 @@ class CharacterRepository implements ICharacterRepository {
   /// {@macro character_repository}
   const CharacterRepository({
     required String query,
-  }) : _query = query;
+    required String title,
+  })  : _query = query,
+        _title = title;
 
   final String _query;
+  final String _title;
 
   /// Base API Url
   static const apiUrl = 'http://api.duckduckgo.com';
 
   /// Base Asset Image Url
   static const baseUrl = 'https://duckduckgo.com/';
+
+  @override
+  String get title => _title;
 
   @override
   Future<Either<List<Character>, CharacterError>> fetchCharacters() async {

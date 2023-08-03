@@ -1,7 +1,9 @@
+import 'package:character_repository/character_repository.dart' show ICharacterRepository;
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
   const App({
+    required ICharacterRepository characterRepository,
     super.key,
   });
 
