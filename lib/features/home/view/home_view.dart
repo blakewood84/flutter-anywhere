@@ -3,7 +3,7 @@ import 'package:anywhere_mobile/features/details/view/details_page.dart';
 import 'package:anywhere_mobile/features/home/cubit/home_cubit.dart' show HomeCubit, HomeState;
 import 'package:character_repository/character_repository.dart' show Character, ICharacterRepository;
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext, SelectContext;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
 
 extension IsTablet on BuildContext {}
 

@@ -34,7 +34,8 @@ class CharacterRepository implements ICharacterRepository {
   String get title => _title;
 
   @override
-  Future<Either<List<Character>, CharacterError Function()>> fetchCharacters() async {
+  Future<Either<List<Character>, CharacterError Function()>> //
+      fetchCharacters() async {
     try {
       final response = (await Dio().get('$apiUrl/$_query')).data as String;
       final json = (jsonDecode(response)['RelatedTopics'] //
@@ -47,8 +48,6 @@ class CharacterRepository implements ICharacterRepository {
         final character = Character.fromJson(char);
         characters.add(character);
       }
-
-      devtools.log('characters: $characters');
 
       return left(characters);
     } on Exception catch (error, stackTrace) {

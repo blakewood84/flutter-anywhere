@@ -13,5 +13,6 @@ abstract interface class ICharacterRepository {
   /// Title of the type of characters being fetched.
   String get title;
 
+  /// Base URL to use for network images
   String get baseUrl;
 }

@@ -12,5 +12,11 @@
     "editor.formatOnSave": true
   },
   "git.autoRepositoryDetection": "subFolders",
-  "cSpell.words": ["flavorizr", "simpsonsviewer", "wireviewer"]
+  "cSpell.words": [
+    "endtemplate",
+    "flavorizr",
+    "mocktail",
+    "simpsonsviewer",
+    "wireviewer"
+  ]
 }
