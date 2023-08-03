@@ -1,0 +1,34 @@
+name: anywhere_mobile
+description: Anywhere Mobile Coding Exercise
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_flavorizr: ^2.2.1
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+flavorizr:
+  ide: "vscode",
+  flavors:
+    simpsons:
+      app:
+        name: "Simpsons Character View"
+      android:
+        applicationId: "com.sample.simpsonsviewer"
+      ios:
+        bundleId: "com.sample.simpsonsviewer" 
+    wire:
+      app:
+        name: "The Wire Character Viewer"
+      android:
+        applicationId: "com.sample.wireviewer"
+      ios:
+        bundleId: "com.sample.wireviewer"
