@@ -1,16 +1,18 @@
-# Simpsons Repository
+# Character Repository
+
+A Character Repository
 
 [![License: MIT][license_badge]][license_link]
 
 ## Installation 💻
 
-**❗ In order to start using Simpsons Repository you must have the [Dart SDK][dart_install_link] installed on your machine.**
+**❗ In order to start using Character Repository you must have the [Dart SDK][dart_install_link] installed on your machine.**
 
-Add `simpsons_repository` to your `pubspec.yaml`:
+Add `character_repository` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  simpsons_repository:
+  character_repository:
 ```
 
 Install it:
@@ -42,6 +44,5 @@ open coverage/index.html
 ```
 
 [dart_install_link]: https://dart.dev/get-dart
-[github_actions_link]: https://docs.github.com/en/actions/learn-github-actions
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT

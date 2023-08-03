@@ -1,8 +1,12 @@
-import 'flavors.dart';
-
 import 'main.dart' as runner;
 
 Future<void> main() async {
-  F.appFlavor = Flavor.wire;
-  await runner.main();
+  const query = '?q=the+wire+characters&format=json';
+  const title = 'The Wire';
+  await runner.main(
+    [
+      query,
+      title,
+    ],
+  );
 }
