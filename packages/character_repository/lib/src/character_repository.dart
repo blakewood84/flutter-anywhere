@@ -33,7 +33,7 @@ class CharacterRepository implements ICharacterRepository {
   String get title => _title;
 
   @override
-  Future<Either<List<Character>, CharacterError>> fetchCharacters() async {
+  Future<Either<List<Character>, CharacterError Function()>> fetchCharacters() async {
     try {
       final response = (await Dio().get('$apiUrl/$_query')).data as String;
       final json = (jsonDecode(response)['RelatedTopics'] //
@@ -56,7 +56,7 @@ class CharacterRepository implements ICharacterRepository {
         error: error,
         stackTrace: stackTrace,
       );
-      return right(const CharacterError.fetchCharacters());
+      return right(CharacterError.fetchCharacters);
     }
   }
 }

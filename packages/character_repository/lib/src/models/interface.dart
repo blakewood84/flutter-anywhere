@@ -8,7 +8,7 @@ abstract interface class ICharacterRepository {
   const ICharacterRepository();
 
   /// Fetch a list of characters
-  Future<Either<List<Character>, CharacterError>> fetchCharacters();
+  Future<Either<List<Character>, CharacterError Function()>> fetchCharacters();
 
   /// Title of the type of characters being fetched.
   String get title;

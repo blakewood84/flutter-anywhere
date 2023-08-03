@@ -8,9 +8,19 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final title = context.read<ICharacterRepository>().title;
+
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
-        final title = context.read<ICharacterRepository>().title;
+        // Loading State
+        if (state.characters == null) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+
         return Scaffold(
           body: LayoutBuilder(
             builder: (context, constraints) {
@@ -30,5 +40,23 @@ class HomeView extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+class _MobileView extends StatelessWidget {
+  const _MobileView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+class _TabletView extends StatelessWidget {
+  const _TabletView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
