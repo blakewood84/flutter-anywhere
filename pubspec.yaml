@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  package_info_plus: ^4.1.0
 
 dev_dependencies:
   flutter_flavorizr: ^2.2.1
