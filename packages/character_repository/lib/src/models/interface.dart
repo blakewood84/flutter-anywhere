@@ -10,6 +10,6 @@ abstract interface class ICharacterRepository {
   /// Fetch a list of characters
   Future<Either<List<Character>, CharacterError>> fetchCharacters();
 
-  /// Title of the type of characters being fetched
+  /// Title of the type of characters being fetched.
   String get title;
 }

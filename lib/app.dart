@@ -19,7 +19,12 @@ class App extends StatelessWidget {
           create: (_) => _characterRepository,
         ),
       ],
-      child: const HomePage(),
+      child: MaterialApp(
+        title: _characterRepository.title,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.light(),
+        home: const HomePage(),
+      ),
     );
   }
 }

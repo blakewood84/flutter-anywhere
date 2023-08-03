@@ -1,3 +1,6 @@
+// ignore_for_file: inference_failure_on_function_invocation, avoid_dynamic_calls
+
+import 'dart:convert';
 import 'dart:developer' as devtools;
 
 import 'package:character_repository/src/models/character.dart';
@@ -32,11 +35,21 @@ class CharacterRepository implements ICharacterRepository {
   @override
   Future<Either<List<Character>, CharacterError>> fetchCharacters() async {
     try {
-      final response =
-          (await Dio().get<Map<dynamic, dynamic>>('$apiUrl/$_query')).data?['RelatedTopics'] as List<dynamic>? ?? [];
+      final response = (await Dio().get('$apiUrl/$_query')).data as String;
+      final json = (jsonDecode(response)['RelatedTopics'] //
+              as List<dynamic>)
+          .cast<Map<String, dynamic>>();
 
-      devtools.log('response: $response');
-      return left([]);
+      final characters = <Character>[];
+
+      for (final char in json) {
+        final character = Character.fromJson(char);
+        characters.add(character);
+      }
+
+      devtools.log('characters: $characters');
+
+      return left(characters);
     } on Exception catch (error, stackTrace) {
       devtools.log(
         'Error making fetchCharacters request!',
