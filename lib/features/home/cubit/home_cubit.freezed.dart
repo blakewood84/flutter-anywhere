@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeState {
   List<Character>? get characters => throw _privateConstructorUsedError;
+  bool get searchEnabled => throw _privateConstructorUsedError;
   CharacterError Function()? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +30,10 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({List<Character>? characters, CharacterError Function()? error});
+  $Res call(
+      {List<Character>? characters,
+      bool searchEnabled,
+      CharacterError Function()? error});
 }
 
 /// @nodoc
@@ -46,6 +50,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? characters = freezed,
+    Object? searchEnabled = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -53,6 +58,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
               as List<Character>?,
+      searchEnabled: null == searchEnabled
+          ? _value.searchEnabled
+          : searchEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -68,7 +77,10 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Character>? characters, CharacterError Function()? error});
+  $Res call(
+      {List<Character>? characters,
+      bool searchEnabled,
+      CharacterError Function()? error});
 }
 
 /// @nodoc
@@ -83,6 +95,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? characters = freezed,
+    Object? searchEnabled = null,
     Object? error = freezed,
   }) {
     return _then(_$_HomeState(
@@ -90,6 +103,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value._characters
           : characters // ignore: cast_nullable_to_non_nullable
               as List<Character>?,
+      searchEnabled: null == searchEnabled
+          ? _value.searchEnabled
+          : searchEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -102,7 +119,9 @@ class __$$_HomeStateCopyWithImpl<$Res>
 
 class _$_HomeState implements _HomeState {
   const _$_HomeState(
-      {final List<Character>? characters = null, this.error = null})
+      {final List<Character>? characters = null,
+      this.searchEnabled = false,
+      this.error = null})
       : _characters = characters;
 
   final List<Character>? _characters;
@@ -118,11 +137,14 @@ class _$_HomeState implements _HomeState {
 
   @override
   @JsonKey()
+  final bool searchEnabled;
+  @override
+  @JsonKey()
   final CharacterError Function()? error;
 
   @override
   String toString() {
-    return 'HomeState(characters: $characters, error: $error)';
+    return 'HomeState(characters: $characters, searchEnabled: $searchEnabled, error: $error)';
   }
 
   @override
@@ -132,12 +154,14 @@ class _$_HomeState implements _HomeState {
             other is _$_HomeState &&
             const DeepCollectionEquality()
                 .equals(other._characters, _characters) &&
+            (identical(other.searchEnabled, searchEnabled) ||
+                other.searchEnabled == searchEnabled) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_characters), error);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_characters), searchEnabled, error);
 
   @JsonKey(ignore: true)
   @override
@@ -149,10 +173,13 @@ class _$_HomeState implements _HomeState {
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {final List<Character>? characters,
+      final bool searchEnabled,
       final CharacterError Function()? error}) = _$_HomeState;
 
   @override
   List<Character>? get characters;
+  @override
+  bool get searchEnabled;
   @override
   CharacterError Function()? get error;
   @override

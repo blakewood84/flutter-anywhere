@@ -30,4 +30,12 @@ class HomeCubit extends Cubit<HomeState> {
       ),
     );
   }
+
+  void toggleSearch() {
+    emit(
+      state.copyWith(
+        searchEnabled: !state.searchEnabled,
+      ),
+    );
+  }
 }

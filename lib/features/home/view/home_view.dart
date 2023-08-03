@@ -1,11 +1,13 @@
+import 'dart:developer' as devtools;
+
 import 'package:anywhere_mobile/extensions/media_query.dart';
 import 'package:anywhere_mobile/features/details/view/details_page.dart';
 import 'package:anywhere_mobile/features/home/cubit/home_cubit.dart' show HomeCubit, HomeState;
+import 'package:anywhere_mobile/features/home/widgets/search_button.dart';
+import 'package:anywhere_mobile/features/home/widgets/search_widget.dart';
 import 'package:character_repository/character_repository.dart' show Character, ICharacterRepository;
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
-
-extension IsTablet on BuildContext {}
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext, SelectContext;
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -14,6 +16,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = context.read<ICharacterRepository>().title;
     final isTablet = MediaQuery.of(context).isTablet;
+    final searchEnabled = context.select((HomeCubit cubit) => cubit.state.searchEnabled);
 
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
@@ -29,11 +32,17 @@ class HomeView extends StatelessWidget {
         }
 
         return Scaffold(
-          extendBodyBehindAppBar: true,
+          extendBodyBehindAppBar: !searchEnabled,
           appBar: AppBar(
             centerTitle: true,
             backgroundColor: Colors.white.withOpacity(.55),
             elevation: 0,
+            actions: const [
+              SearchButton(),
+              SizedBox(
+                width: 20,
+              ),
+            ],
             title: Text(
               '$title Characters',
               style: const TextStyle(
@@ -61,17 +70,31 @@ class _MobileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final searchEnabled = context.select(
+      (HomeCubit cubit) => cubit.state.searchEnabled,
+    );
+
+    devtools.log('searchEnabled: $searchEnabled');
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: characters.length,
-        itemBuilder: (context, index) {
-          final character = characters.elementAt(index);
-          return _CharacterCard(
-            character: character,
-          );
-        },
+      child: Column(
+        children: [
+          const SearchWidget(),
+          Expanded(
+            child: ListView.builder(
+              padding: searchEnabled ? const EdgeInsets.all(0) : null,
+              shrinkWrap: true,
+              itemCount: characters.length,
+              itemBuilder: (context, index) {
+                final character = characters.elementAt(index);
+                return _CharacterCard(
+                  character: character,
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

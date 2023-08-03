@@ -4,6 +4,7 @@ part of 'home_cubit.dart';
 class HomeState with _$HomeState {
   const factory HomeState({
     @Default(null) List<Character>? characters,
+    @Default(false) bool searchEnabled,
     @Default(null) CharacterError Function()? error,
   }) = _HomeState;
 }
