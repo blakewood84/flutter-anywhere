@@ -67,4 +67,10 @@ class HomeCubit extends Cubit<HomeState> {
       },
     );
   }
+
+  void clearSearch() => emit(
+        state.copyWith(
+          characters: _repository.originalList,
+        ),
+      );
 }
