@@ -3,6 +3,7 @@ import 'package:character_repository/character_repository.dart';
 import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DetailsView extends StatelessWidget {
   const DetailsView({super.key});
@@ -10,8 +11,6 @@ class DetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final character = context.read<DetailsCubit>().character;
-    final baseUrl = context.read<ICharacterRepository>().baseUrl;
-
     final description = character.description.split('-').length > 1
         ? character.description.split('-')[1].trim()
         : character.description;
@@ -41,22 +40,7 @@ class DetailsView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Card(
-                      elevation: 0,
-                      child: Container(
-                        constraints: BoxConstraints(
-                          minHeight: 200,
-                          maxHeight: 250,
-                          minWidth: constraints.maxWidth,
-                        ),
-                        child: character.image.isNotEmpty
-                            ? FastCachedImage(
-                                url: '$baseUrl${character.image}',
-                                fit: BoxFit.contain,
-                              )
-                            : const _NoImage(),
-                      ),
-                    ),
+                    const _CharacterImage(),
                     const SizedBox(
                       height: 20,
                     ),
@@ -81,6 +65,44 @@ class DetailsView extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+class _CharacterImage extends StatelessWidget {
+  const _CharacterImage();
+
+  @override
+  Widget build(BuildContext context) {
+    final baseUrl = context.read<ICharacterRepository>().baseUrl;
+    final character = context.read<DetailsCubit>().character;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Card(
+          elevation: 0,
+          child: Container(
+            constraints: BoxConstraints(
+              minHeight: 200,
+              maxHeight: 250,
+              minWidth: constraints.maxWidth,
+            ),
+            child: character.image.isNotEmpty
+                ? FastCachedImage(
+                    url: '$baseUrl${character.image}',
+                    fit: BoxFit.contain,
+                    loadingBuilder: (context, progress) {
+                      return Shimmer.fromColors(
+                        baseColor: Colors.red,
+                        highlightColor: Colors.yellow,
+                        child: const SizedBox.shrink(),
+                      );
+                    },
+                  )
+                : const _NoImage(),
+          ),
+        );
+      },
     );
   }
 }
