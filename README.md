@@ -50,4 +50,8 @@ To separate the business logic, this project includes one package:
 
 ## Preview
 
-![Preview](./preview.gif "App Preview")
+<!-- ![Preview](./preview.gif "App Preview") -->
+
+<p align="center">
+<img src="./preview.gif" alt="Preview Image" />
+</p>
