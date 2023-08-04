@@ -21,7 +21,7 @@ void main() async {
   final title = args.last;
   const apiUrl = 'https://api.duckduckgo.com';
 
-  group('Test Response', () {
+  group('Bloc & Repository Tests', () {
     setUp(() {
       dio = Dio(BaseOptions());
       dioAdapter = DioAdapter(
@@ -37,7 +37,7 @@ void main() async {
       );
     });
 
-    test('Test fetchCharacters request - Returns Left<List<Characters>>', () async {
+    test('Repository Test - fetchCharacters request', () async {
       final route = '$apiUrl/$query';
       dioAdapter.onGet(route, (server) {
         return server.reply(
