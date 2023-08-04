@@ -1,16 +1,43 @@
 # anywhere_mobile
 
-A new Flutter project.
+Anywhere Mobile Engineer Candidate Code Exercise
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To run the project, there are 2 debug scripts available to run if you are using VSCode:
 
-A few resources to get you started if this is your first Flutter project:
+- Simpsons - Debug
+- The Wire - Debug
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+You may also run each flavor by providing the appropriate commands in the terminal when your emulator is running:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+`flutter run --flavor simpsons -t lib/main_simpsons.dart`
+
+or
+
+`flutter run --flavor wire -t lib/main_wire.dart`
+
+## Running Tests
+
+There is a test folder available under `./test/tests.dart` at the root of the project folder. To run tests simply run the following in the terminal:
+
+`flutter test`
+
+Tests being ran:
+
+- Repository Test - fetchCharacters request
+- Bloc Tests - Cubit initialization, Mock Error, Search
+
+## Packages
+
+To separate the business logic, this project includes one package: `character_repository`.
+
+## Open Source Pub Credits
+
+- Very Good CLI - for dart package creation: [Link](https://pub.dev/packages/very_good_cli)
+- Flutter Flavorizr - for quick scaffolding of flavors: [Link](https://pub.dev/packages/flutter_flavorizr)
+- Flutter Bloc - for state management: [Link](https://pub.dev/packages/flutter_bloc)
+- Freezed - for model scaffolding: [Link](https://pub.dev/packages/freezed)
+- dartz - for class union responses: [Link](https://pub.dev/packages/dartz)
+- dio - for easy network requests: [Link](https://pub.dev/packages/dio)
+-

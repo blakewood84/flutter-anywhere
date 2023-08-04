@@ -23,7 +23,6 @@ dependencies:
 dev_dependencies:
   bloc_test: ^9.1.4
   build_runner: ^2.4.6
-  flutter_flavorizr: ^2.2.1
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
@@ -32,21 +31,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
-flavorizr:
-  ide: "vscode"
-  flavors:
-    simpsons:
-      app:
-        name: "Simpsons Character View"
-      android:
-        applicationId: "com.sample.simpsonsviewer"
-      ios:
-        bundleId: "com.sample.simpsonsviewer"
-    wire:
-      app:
-        name: "The Wire Character Viewer"
-      android:
-        applicationId: "com.sample.wireviewer"
-      ios:
-        bundleId: "com.sample.wireviewer"
