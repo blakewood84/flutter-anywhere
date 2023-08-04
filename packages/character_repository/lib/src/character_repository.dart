@@ -69,4 +69,32 @@ class CharacterRepository implements ICharacterRepository {
       return right(CharacterError.fetchCharacters);
     }
   }
+
+  @override
+  Future<Either<List<Character>, CharacterError Function()>> search(
+    String query,
+  ) async {
+    if (query.isEmpty) return left(originalList ?? []);
+    try {
+      final response = originalList
+          ?.where(
+            (character) =>
+                character.title.contains(
+                  query,
+                ) ||
+                character.description.contains(
+                  query,
+                ),
+          )
+          .toList();
+      return left(response ?? []);
+    } on Exception catch (error, stackTrace) {
+      devtools.log(
+        'Error making search request!',
+        error: error,
+        stackTrace: stackTrace,
+      );
+      return right(CharacterError.search);
+    }
+  }
 }

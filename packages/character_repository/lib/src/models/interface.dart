@@ -10,6 +10,11 @@ abstract interface class ICharacterRepository {
   /// Fetch a list of characters
   Future<Either<List<Character>, CharacterError Function()>> fetchCharacters();
 
+  /// Search Characters
+  Future<Either<List<Character>, CharacterError Function()>> search(
+    String query,
+  );
+
   /// Supplies the original list of characters fetched from the API
   List<Character>? get originalList;
 
