@@ -19,7 +19,7 @@ or
 
 ## Running Tests
 
-There is a test folder available under `./test/tests.dart` at the root of the project folder. To run tests simply run the following in the terminal:
+There is a test folder available under `./test/unit_test.dart` at the root of the project folder. To run tests simply run the following in the terminal:
 
 `flutter test`
 
@@ -30,7 +30,9 @@ Tests being ran:
 
 ## Packages
 
-To separate the business logic, this project includes one package: `character_repository`.
+To separate the business logic, this project includes one package:
+
+`./packages/character_repository`.
 
 ## Open Source Credits
 
