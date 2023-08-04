@@ -28,10 +28,6 @@ class CharacterRepository implements ICharacterRepository {
   final String _title;
   final Dio _dio;
 
-  final _characterListController = BehaviorSubject<List<Character>?>.seeded(
-    null,
-  );
-
   /// Base API Url
   static const apiUrl = 'http://api.duckduckgo.com';
 
@@ -44,6 +40,11 @@ class CharacterRepository implements ICharacterRepository {
 
   @override
   List<Character>? get originalList => _characterListController.value;
+
+  /// Keeps track of the original API data
+  final _characterListController = BehaviorSubject<List<Character>?>.seeded(
+    null,
+  );
 
   @override
   Future<Either<List<Character>, CharacterError Function()>> //
