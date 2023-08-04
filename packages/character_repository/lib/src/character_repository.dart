@@ -19,24 +19,26 @@ class CharacterRepository implements ICharacterRepository {
   CharacterRepository({
     required String query,
     required String title,
+    required String apiUrl,
     required Dio dio,
   })  : _query = query,
         _title = title,
+        _apiUrl = apiUrl,
         _dio = dio;
 
+  final String _apiUrl;
   final String _query;
   final String _title;
   final Dio _dio;
 
-  /// Base API Url
-  static const apiUrl = 'http://api.duckduckgo.com';
-
-  /// Base Asset Image Url
   @override
   String get baseUrl => 'https://duckduckgo.com/';
 
   @override
   String get title => _title;
+
+  @override
+  String get apiUrl => _apiUrl;
 
   @override
   List<Character>? get originalList => _characterListController.value;
@@ -50,7 +52,8 @@ class CharacterRepository implements ICharacterRepository {
   Future<Either<List<Character>, CharacterError Function()>> //
       fetchCharacters() async {
     try {
-      final response = (await _dio.get('$apiUrl/$_query')).data as String;
+      final response = (await _dio.get('$_apiUrl/$_query')).data as String;
+
       final json = (jsonDecode(response)['RelatedTopics'] //
               as List<dynamic>)
           .cast<Map<String, dynamic>>();
@@ -78,8 +81,6 @@ class CharacterRepository implements ICharacterRepository {
   Future<Either<List<Character>, CharacterError Function()>> search(
     String query,
   ) async {
-    devtools.log('query: $query');
-    devtools.log('query.isEmpty: ${query.isEmpty}');
     if (query.isEmpty) return left(originalList ?? []);
     try {
       final response = originalList

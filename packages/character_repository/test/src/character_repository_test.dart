@@ -9,8 +9,9 @@ class MockDio extends Mock implements Dio {}
 
 void main() {
   final ICharacterRepository characterRepository = CharacterRepository(
-    query: 'http://api.duckduckgo.com/?q=simpsons+characters&format=json',
+    query: '/?q=simpsons+characters&format=json',
     title: 'Mock',
+    apiUrl: 'http://api.duckduckgo.com',
     dio: MockDio(),
   );
 

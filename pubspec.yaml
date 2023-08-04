@@ -21,12 +21,13 @@ dependencies:
   shimmer: ^3.0.0
 
 dev_dependencies:
+  bloc_test: ^9.1.4
   build_runner: ^2.4.6
   flutter_flavorizr: ^2.2.1
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  freezed: ^2.4.2
+  freezed: ^2.4.1
   http_mock_adapter: ^0.4.4
 
 flutter:

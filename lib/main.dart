@@ -17,6 +17,7 @@ FutureOr<void> main(List<String> args) async {
     query: query,
     title: title,
     dio: dio,
+    apiUrl: 'https://api.duckduckgo.com',
   );
 
   await FastCachedImageConfig.init(

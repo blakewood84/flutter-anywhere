@@ -23,4 +23,7 @@ abstract interface class ICharacterRepository {
 
   /// Base URL to use for network images
   String get baseUrl;
+
+  /// API Url
+  String get apiUrl;
 }
