@@ -1,9 +1,9 @@
 import 'package:anywhere_mobile/features/details/cubit/details_cubit.dart';
 import 'package:character_repository/character_repository.dart';
-import 'package:fast_cached_network_image/fast_cached_network_image.dart';
+import 'package:fast_cached_network_image/fast_cached_network_image.dart' show FastCachedImage, FastCachedImageConfig;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:shimmer/shimmer.dart' show Shimmer;
 
 class DetailsView extends StatelessWidget {
   const DetailsView({super.key});
@@ -91,11 +91,23 @@ class _CharacterImage extends StatelessWidget {
                 ? FastCachedImage(
                     url: '$baseUrl${character.image}',
                     fit: BoxFit.contain,
+                    fadeInDuration: const Duration(milliseconds: 100),
                     loadingBuilder: (context, progress) {
+                      if (FastCachedImageConfig.isCached(imageUrl: '$baseUrl${character.image}')) {
+                        return const SizedBox.shrink();
+                      }
+
                       return Shimmer.fromColors(
-                        baseColor: Colors.red,
-                        highlightColor: Colors.yellow,
-                        child: const SizedBox.shrink(),
+                        baseColor: Colors.grey.shade200,
+                        highlightColor: Colors.white,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                          ),
+                          width: double.infinity,
+                          height: double.infinity,
+                        ),
                       );
                     },
                   )
