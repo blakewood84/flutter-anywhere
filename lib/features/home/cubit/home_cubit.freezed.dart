@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeState {
   List<Character>? get characters => throw _privateConstructorUsedError;
+  Character? get selectedCharacter => throw _privateConstructorUsedError;
   bool get searchEnabled => throw _privateConstructorUsedError;
   CharacterError Function()? get error => throw _privateConstructorUsedError;
 
@@ -32,6 +33,7 @@ abstract class $HomeStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<Character>? characters,
+      Character? selectedCharacter,
       bool searchEnabled,
       CharacterError Function()? error});
 }
@@ -50,6 +52,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? characters = freezed,
+    Object? selectedCharacter = freezed,
     Object? searchEnabled = null,
     Object? error = freezed,
   }) {
@@ -58,6 +61,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
               as List<Character>?,
+      selectedCharacter: freezed == selectedCharacter
+          ? _value.selectedCharacter
+          : selectedCharacter // ignore: cast_nullable_to_non_nullable
+              as Character?,
       searchEnabled: null == searchEnabled
           ? _value.searchEnabled
           : searchEnabled // ignore: cast_nullable_to_non_nullable
@@ -79,6 +86,7 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<Character>? characters,
+      Character? selectedCharacter,
       bool searchEnabled,
       CharacterError Function()? error});
 }
@@ -95,6 +103,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? characters = freezed,
+    Object? selectedCharacter = freezed,
     Object? searchEnabled = null,
     Object? error = freezed,
   }) {
@@ -103,6 +112,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value._characters
           : characters // ignore: cast_nullable_to_non_nullable
               as List<Character>?,
+      selectedCharacter: freezed == selectedCharacter
+          ? _value.selectedCharacter
+          : selectedCharacter // ignore: cast_nullable_to_non_nullable
+              as Character?,
       searchEnabled: null == searchEnabled
           ? _value.searchEnabled
           : searchEnabled // ignore: cast_nullable_to_non_nullable
@@ -120,6 +133,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
 class _$_HomeState implements _HomeState {
   const _$_HomeState(
       {final List<Character>? characters = null,
+      this.selectedCharacter = null,
       this.searchEnabled = false,
       this.error = null})
       : _characters = characters;
@@ -137,6 +151,9 @@ class _$_HomeState implements _HomeState {
 
   @override
   @JsonKey()
+  final Character? selectedCharacter;
+  @override
+  @JsonKey()
   final bool searchEnabled;
   @override
   @JsonKey()
@@ -144,7 +161,7 @@ class _$_HomeState implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(characters: $characters, searchEnabled: $searchEnabled, error: $error)';
+    return 'HomeState(characters: $characters, selectedCharacter: $selectedCharacter, searchEnabled: $searchEnabled, error: $error)';
   }
 
   @override
@@ -154,14 +171,20 @@ class _$_HomeState implements _HomeState {
             other is _$_HomeState &&
             const DeepCollectionEquality()
                 .equals(other._characters, _characters) &&
+            (identical(other.selectedCharacter, selectedCharacter) ||
+                other.selectedCharacter == selectedCharacter) &&
             (identical(other.searchEnabled, searchEnabled) ||
                 other.searchEnabled == searchEnabled) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_characters), searchEnabled, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_characters),
+      selectedCharacter,
+      searchEnabled,
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -173,11 +196,14 @@ class _$_HomeState implements _HomeState {
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {final List<Character>? characters,
+      final Character? selectedCharacter,
       final bool searchEnabled,
       final CharacterError Function()? error}) = _$_HomeState;
 
   @override
   List<Character>? get characters;
+  @override
+  Character? get selectedCharacter;
   @override
   bool get searchEnabled;
   @override

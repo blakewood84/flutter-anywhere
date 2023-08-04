@@ -73,4 +73,8 @@ class HomeCubit extends Cubit<HomeState> {
           characters: _repository.originalList,
         ),
       );
+
+  void selectCharacter(Character? character) => emit(
+        state.copyWith(selectedCharacter: character),
+      );
 }

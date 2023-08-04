@@ -1,4 +1,5 @@
-import 'package:anywhere_mobile/features/details/cubit/details_cubit.dart';
+import 'package:anywhere_mobile/features/details/widgets/clear_button.dart';
+import 'package:anywhere_mobile/features/home/cubit/home_cubit.dart';
 import 'package:character_repository/character_repository.dart';
 import 'package:fast_cached_network_image/fast_cached_network_image.dart' show FastCachedImage, FastCachedImageConfig;
 import 'package:flutter/material.dart';
@@ -6,11 +7,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart' show Shimmer;
 
 class DetailsView extends StatelessWidget {
-  const DetailsView({super.key});
+  const DetailsView({
+    required this.character,
+    required this.isTablet,
+    super.key,
+  });
+
+  final Character character;
+  final bool isTablet;
 
   @override
   Widget build(BuildContext context) {
-    final character = context.read<DetailsCubit>().character;
     final description = character.description.split('-').length > 1
         ? character.description.split('-')[1].trim()
         : character.description;
@@ -26,9 +33,21 @@ class DetailsView extends StatelessWidget {
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: const BackButton(
-          color: Colors.black,
-        ),
+        leading: !isTablet
+            ? BackButton(
+                color: Colors.black,
+                onPressed: () {
+                  Navigator.pop(context);
+                  context.read<HomeCubit>().selectCharacter(null);
+                },
+              )
+            : null,
+        actions: isTablet
+            ? [
+                const ClearButton(),
+                const SizedBox(width: 10),
+              ]
+            : null,
       ),
       body: SingleChildScrollView(
         child: LayoutBuilder(
@@ -40,7 +59,9 @@ class DetailsView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const _CharacterImage(),
+                    _CharacterImage(
+                      character: character,
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -70,12 +91,18 @@ class DetailsView extends StatelessWidget {
 }
 
 class _CharacterImage extends StatelessWidget {
-  const _CharacterImage();
+  const _CharacterImage({
+    required this.character,
+  });
+
+  final Character character;
+
+  @override
+  Key get key => UniqueKey();
 
   @override
   Widget build(BuildContext context) {
     final baseUrl = context.read<ICharacterRepository>().baseUrl;
-    final character = context.read<DetailsCubit>().character;
 
     return LayoutBuilder(
       builder: (context, constraints) {

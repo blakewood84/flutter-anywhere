@@ -1,4 +1,5 @@
 import 'package:anywhere_mobile/extensions/media_query.dart';
+import 'package:anywhere_mobile/features/details/view/view.dart';
 import 'package:anywhere_mobile/features/home/cubit/home_cubit.dart' show HomeCubit, HomeState;
 import 'package:anywhere_mobile/features/home/widgets/list_item.dart';
 import 'package:anywhere_mobile/features/home/widgets/search_button.dart';
@@ -52,7 +53,9 @@ class HomeView extends StatelessWidget {
               ? _MobileView(
                   characters: characters,
                 )
-              : const _TabletView(),
+              : _TabletView(
+                  characters: characters,
+                ),
         );
       },
     );
@@ -96,11 +99,47 @@ class _MobileView extends StatelessWidget {
   }
 }
 
-class _TabletView extends StatelessWidget {
-  const _TabletView();
+class _TabletView extends StatefulWidget {
+  const _TabletView({
+    required this.characters,
+  });
+
+  final List<Character> characters;
 
   @override
+  State<_TabletView> createState() => _TabletViewState();
+}
+
+class _TabletViewState extends State<_TabletView> {
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final searchEnabled = context.select(
+      (HomeCubit cubit) => cubit.state.searchEnabled,
+    );
+    final selectedCharacter = context.select((HomeCubit cubit) => cubit.state.selectedCharacter);
+
+    return Row(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            padding: searchEnabled ? const EdgeInsets.all(0) : null,
+            shrinkWrap: true,
+            itemCount: widget.characters.length,
+            itemBuilder: (context, index) {
+              final character = widget.characters.elementAt(index);
+              return ListItem(
+                character: character,
+              );
+            },
+          ),
+        ),
+        Expanded(
+          child: DetailsPage(
+            character: selectedCharacter,
+            isTablet: true,
+          ),
+        ),
+      ],
+    );
   }
 }
