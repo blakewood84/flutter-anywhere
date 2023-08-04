@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:character_repository/character_repository.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'home_cubit.freezed.dart';
@@ -39,26 +40,31 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  void searchCharacters(String query) {
-    if (query.isEmpty) {
-      emit(
-        state.copyWith(
-          characters: _repository.originalList ?? [],
-        ),
-      );
-      return;
-    }
-
-    final response = _repository.originalList
-        ?.where(
-          (character) => character.title.contains(query) || character.description.contains(query),
-        )
-        .toList();
-
+  void searchCharacters(String query) async {
     emit(
-      state.copyWith(
-        characters: response ?? _repository.originalList ?? [],
-      ),
+      state.copyWith(error: null),
+    );
+
+    EasyDebounce.debounce(
+      'search',
+      const Duration(milliseconds: 300),
+      () async {
+        final response = await _repository.search(query);
+        response.fold(
+          (characters) => emit(
+            state.copyWith(
+              characters: characters,
+            ),
+          ),
+          (error) {
+            emit(
+              state.copyWith(
+                error: error,
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

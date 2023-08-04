@@ -74,6 +74,8 @@ class CharacterRepository implements ICharacterRepository {
   Future<Either<List<Character>, CharacterError Function()>> search(
     String query,
   ) async {
+    devtools.log('query: $query');
+    devtools.log('query.isEmpty: ${query.isEmpty}');
     if (query.isEmpty) return left(originalList ?? []);
     try {
       final response = originalList

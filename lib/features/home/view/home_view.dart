@@ -1,8 +1,6 @@
-import 'dart:developer' as devtools;
-
 import 'package:anywhere_mobile/extensions/media_query.dart';
-import 'package:anywhere_mobile/features/details/view/details_page.dart';
 import 'package:anywhere_mobile/features/home/cubit/home_cubit.dart' show HomeCubit, HomeState;
+import 'package:anywhere_mobile/features/home/widgets/list_item.dart';
 import 'package:anywhere_mobile/features/home/widgets/search_button.dart';
 import 'package:anywhere_mobile/features/home/widgets/search_widget.dart';
 import 'package:character_repository/character_repository.dart' show Character, ICharacterRepository;
@@ -74,8 +72,6 @@ class _MobileView extends StatelessWidget {
       (HomeCubit cubit) => cubit.state.searchEnabled,
     );
 
-    devtools.log('searchEnabled: $searchEnabled');
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
@@ -88,7 +84,7 @@ class _MobileView extends StatelessWidget {
               itemCount: characters.length,
               itemBuilder: (context, index) {
                 final character = characters.elementAt(index);
-                return _CharacterCard(
+                return ListItem(
                   character: character,
                 );
               },
@@ -106,32 +102,5 @@ class _TabletView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
-  }
-}
-
-class _CharacterCard extends StatelessWidget {
-  const _CharacterCard({
-    required this.character,
-  });
-
-  final Character character;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      elevation: .5,
-      child: InkWell(
-        onTap: () => Navigator.of(context).push(
-          DetailsPage.route(character),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Center(
-            child: Text(character.title),
-          ),
-        ),
-      ),
-    );
   }
 }
