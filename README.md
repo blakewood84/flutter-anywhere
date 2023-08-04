@@ -47,3 +47,7 @@ To separate the business logic, this project includes one package:
 - [shimmer](https://pub.dev/packages/shimmer) - image loading skeleton
 - [rxdart](https://pub.dev/packages/rxdart) - stream controllers for storing state in repository
 - [Equatable](https://pub.dev/packages/equatable) - Simple equality comparison for character class.
+
+## Preview
+
+![Preview](./preview.gif "App Preview")
