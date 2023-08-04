@@ -19,11 +19,14 @@ class CharacterRepository implements ICharacterRepository {
   CharacterRepository({
     required String query,
     required String title,
+    required Dio dio,
   })  : _query = query,
-        _title = title;
+        _title = title,
+        _dio = dio;
 
   final String _query;
   final String _title;
+  final Dio _dio;
 
   final _characterListController = BehaviorSubject<List<Character>?>.seeded(
     null,
@@ -46,7 +49,7 @@ class CharacterRepository implements ICharacterRepository {
   Future<Either<List<Character>, CharacterError Function()>> //
       fetchCharacters() async {
     try {
-      final response = (await Dio().get('$apiUrl/$_query')).data as String;
+      final response = (await _dio.get('$apiUrl/$_query')).data as String;
       final json = (jsonDecode(response)['RelatedTopics'] //
               as List<dynamic>)
           .cast<Map<String, dynamic>>();
