@@ -51,5 +51,5 @@ To separate the business logic, this project includes one package:
 ## Preview
 
 <p align="center">
-    <img src="./recording.gif" width=250 height=250 alt="Preview Image" />
+    <img src="./recording.gif" alt="Preview Image" />
 </p>
