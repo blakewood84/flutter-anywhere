@@ -86,12 +86,12 @@ class CharacterRepository implements ICharacterRepository {
       final response = originalList
           ?.where(
             (character) =>
-                character.title.contains(
-                  query,
-                ) ||
-                character.description.contains(
-                  query,
-                ),
+                character.title.toLowerCase().contains(
+                      query.toLowerCase(),
+                    ) ||
+                character.description.toLowerCase().contains(
+                      query.toLowerCase(),
+                    ),
           )
           .toList();
       return left(response ?? []);
