@@ -1,5 +1,6 @@
 import 'package:anywhere_mobile/features/details/cubit/details_cubit.dart';
 import 'package:character_repository/character_repository.dart';
+import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,8 +50,8 @@ class DetailsView extends StatelessWidget {
                           minWidth: constraints.maxWidth,
                         ),
                         child: character.image.isNotEmpty
-                            ? Image.network(
-                                '$baseUrl${character.image}',
+                            ? FastCachedImage(
+                                url: '$baseUrl${character.image}',
                                 fit: BoxFit.contain,
                               )
                             : const _NoImage(),

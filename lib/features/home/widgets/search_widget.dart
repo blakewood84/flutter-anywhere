@@ -2,7 +2,7 @@ import 'dart:developer' as devtools;
 
 import 'package:anywhere_mobile/features/home/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show SelectContext, ReadContext;
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({super.key});
