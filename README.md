@@ -32,12 +32,16 @@ Tests being ran:
 
 To separate the business logic, this project includes one package: `character_repository`.
 
-## Open Source Pub Credits
+## Open Source Credits
 
-- Very Good CLI - for dart package creation: [Link](https://pub.dev/packages/very_good_cli)
-- Flutter Flavorizr - for quick scaffolding of flavors: [Link](https://pub.dev/packages/flutter_flavorizr)
-- Flutter Bloc - for state management: [Link](https://pub.dev/packages/flutter_bloc)
-- Freezed - for model scaffolding: [Link](https://pub.dev/packages/freezed)
-- dartz - for class union responses: [Link](https://pub.dev/packages/dartz)
-- dio - for easy network requests: [Link](https://pub.dev/packages/dio)
--
+- [Very Good CLI](https://pub.dev/packages/very_good_cli): for dart package creation
+- [Flutter Flavorizr](https://pub.dev/packages/flutter_flavorizr) - for quick scaffolding of flavors
+- [flutter_bloc](https://pub.dev/packages/flutter_bloc) - for state management
+- [freezed](https://pub.dev/packages/freezed) - for model scaffolding
+- [dartz](https://pub.dev/packages/dartz) - for class union responses
+- [dio](https://pub.dev/packages/dio) - for easy network requests
+- [easy_debounce](https://pub.dev/packages/easy_debounce) - for method debouncing (search functionality)
+- [fast_cached_network_image](https://pub.dev/packages/fast_cached_network_image) - caching images locally on phone
+- [shimmer](https://pub.dev/packages/shimmer) - image loading skeleton
+- [rxdart](https://pub.dev/packages/rxdart) - stream controllers for storing state in repository
+- [Equatable](https://pub.dev/packages/equatable) - Simple equality comparison for character class.
