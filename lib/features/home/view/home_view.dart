@@ -118,25 +118,35 @@ class _TabletViewState extends State<_TabletView> {
     );
     final selectedCharacter = context.select((HomeCubit cubit) => cubit.state.selectedCharacter);
 
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        const SearchWidget(),
         Expanded(
-          child: ListView.builder(
-            padding: searchEnabled ? const EdgeInsets.all(0) : null,
-            shrinkWrap: true,
-            itemCount: widget.characters.length,
-            itemBuilder: (context, index) {
-              final character = widget.characters.elementAt(index);
-              return ListItem(
-                character: character,
-              );
-            },
-          ),
-        ),
-        Expanded(
-          child: DetailsPage(
-            character: selectedCharacter,
-            isTablet: true,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  padding: searchEnabled ? const EdgeInsets.all(0) : null,
+                  shrinkWrap: true,
+                  itemCount: widget.characters.length,
+                  itemBuilder: (context, index) {
+                    final character = widget.characters.elementAt(index);
+                    return ListItem(
+                      character: character,
+                    );
+                  },
+                ),
+              ),
+              Expanded(
+                child: DetailsPage(
+                  character: selectedCharacter,
+                  isTablet: true,
+                ),
+              ),
+            ],
           ),
         ),
       ],

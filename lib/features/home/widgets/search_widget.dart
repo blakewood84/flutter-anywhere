@@ -1,5 +1,3 @@
-import 'dart:developer' as devtools;
-
 import 'package:anywhere_mobile/features/home/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show SelectContext, ReadContext;
@@ -11,7 +9,6 @@ class SearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    devtools.log('rebuild');
     final searchEnabled = context.select((HomeCubit cubit) => cubit.state.searchEnabled);
     return AnimatedCrossFade(
       duration: const Duration(milliseconds: 300),
@@ -20,28 +17,31 @@ class SearchWidget extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 10),
         child: Column(
           children: [
-            SearchBar(
-              controller: _controller,
-              elevation: MaterialStateProperty.all(.5),
-              leading: const Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Icon(
-                  Icons.search,
-                  color: Colors.black,
+            Container(
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: SearchBar(
+                controller: _controller,
+                elevation: MaterialStateProperty.all(.5),
+                leading: const Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  ),
                 ),
+                trailing: [
+                  IconButton(
+                    icon: const Icon(Icons.clear),
+                    onPressed: () {
+                      _controller.clear();
+                      context.read<HomeCubit>().clearSearch();
+                    },
+                  ),
+                ],
+                onChanged: (query) {
+                  context.read<HomeCubit>().searchCharacters(query);
+                },
               ),
-              trailing: [
-                IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: () {
-                    _controller.clear();
-                    context.read<HomeCubit>().clearSearch();
-                  },
-                ),
-              ],
-              onChanged: (query) {
-                context.read<HomeCubit>().searchCharacters(query);
-              },
             ),
           ],
         ),
