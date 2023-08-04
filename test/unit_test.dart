@@ -1,8 +1,9 @@
-import 'dart:convert';
+import 'dart:convert' show jsonEncode;
 
-import 'package:anywhere_mobile/features/home/cubit/home_cubit.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:character_repository/character_repository.dart';
+import 'package:anywhere_mobile/features/home/cubit/home_cubit.dart' show HomeCubit, HomeState;
+import 'package:bloc_test/bloc_test.dart' show blocTest;
+import 'package:character_repository/character_repository.dart'
+    show CharacterRepository, Character, ICharacterRepository, CharacterError;
 import 'package:dio/dio.dart' show Dio, BaseOptions;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart' show DioAdapter, FullHttpRequestMatcher;
@@ -170,7 +171,7 @@ final mockDataResponse = {
   ]
 };
 
-final characterBarney = Character.fromJson({
+final characterBarney = Character.fromJson(const {
   "FirstURL": "https://duckduckgo.com/Barney_Gumble",
   "Icon": {"Height": "", "URL": "/i/39ce98c0.png", "Width": ""},
   "Result":
