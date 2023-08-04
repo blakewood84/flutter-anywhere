@@ -111,6 +111,8 @@ class _TabletView extends StatefulWidget {
 }
 
 class _TabletViewState extends State<_TabletView> {
+  final _controller = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     final searchEnabled = context.select(
@@ -128,16 +130,21 @@ class _TabletViewState extends State<_TabletView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: ListView.builder(
-                  padding: searchEnabled ? const EdgeInsets.all(0) : null,
-                  shrinkWrap: true,
-                  itemCount: widget.characters.length,
-                  itemBuilder: (context, index) {
-                    final character = widget.characters.elementAt(index);
-                    return ListItem(
-                      character: character,
-                    );
-                  },
+                child: Scrollbar(
+                  controller: _controller,
+                  thickness: 5,
+                  thumbVisibility: true,
+                  child: ListView.builder(
+                    padding: searchEnabled ? const EdgeInsets.all(0) : null,
+                    shrinkWrap: true,
+                    itemCount: widget.characters.length,
+                    itemBuilder: (context, index) {
+                      final character = widget.characters.elementAt(index);
+                      return ListItem(
+                        character: character,
+                      );
+                    },
+                  ),
                 ),
               ),
               Expanded(
