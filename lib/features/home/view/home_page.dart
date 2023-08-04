@@ -1,3 +1,4 @@
+import 'package:anywhere_mobile/dialogs/alert_dialog.dart';
 import 'package:anywhere_mobile/features/details/view/view.dart';
 import 'package:anywhere_mobile/features/home/cubit/home_cubit.dart' show HomeCubit, HomeState;
 import 'package:anywhere_mobile/features/home/view/home_view.dart' show HomeView;
@@ -21,7 +22,21 @@ class HomePage extends StatelessWidget {
           BlocListener<HomeCubit, HomeState>(
             listenWhen: (previous, current) => current.error != null,
             listener: (context, state) {
-              // TODO: Throw Error Dialog
+              final errorMessage = state.error!.call().maybeWhen(
+                    fetchCharacters: () => 'There was an error fetching characters from the API',
+                    search: () => 'There was an error while performing a character search',
+                    orElse: () => 'Unknown Error',
+                  );
+
+              showAlertDialog(
+                context: context,
+                error: true,
+                title: 'Whoops... An error has occurred!',
+                content: errorMessage,
+                dialogOptions: () => {
+                  'Ok': null,
+                },
+              );
             },
           ),
           BlocListener<HomeCubit, HomeState>(
