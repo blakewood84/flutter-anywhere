@@ -14,7 +14,6 @@ void main() {
     dio: MockDio(),
   );
 
-  setUp(() {});
   group('CharacterRepository', () {
     test('can be instantiated', () {
       expect(
