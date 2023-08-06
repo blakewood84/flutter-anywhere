@@ -1,11 +1,10 @@
-import 'dart:async';
+import 'dart:async' show FutureOr;
 
-import 'package:character_repository/character_repository.dart' show CharacterRepository, ICharacterRepository;
-import 'package:dio/dio.dart' show Dio;
-import 'package:fast_cached_network_image/fast_cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:character_repository/character_repository.dart' show CharacterRepository, Dio, ICharacterRepository;
+import 'package:fast_cached_network_image/fast_cached_network_image.dart' show FastCachedImageConfig;
+import 'package:flutter/material.dart' show runApp;
 
-import 'app.dart';
+import 'app.dart' show App;
 
 FutureOr<void> main(List<String> args) async {
   final query = args.first;
