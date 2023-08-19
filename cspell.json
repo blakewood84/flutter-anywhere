@@ -9,6 +9,7 @@
   "useGitignore": true,
   // List of allowed words that are not part of dictionaries.
   "words": ["Contador", "localizable", "mostrado", "página", "Texto"],
+  "ignorePaths": ["*.freezed.dart"],
   // List of not-allowed words.
   // For example "hte" should be "the".
   "flagWords": ["hte"]
