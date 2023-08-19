@@ -3,6 +3,7 @@ import 'package:character_repository/character_repository.dart' show ICharacterR
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show MultiRepositoryProvider, RepositoryProvider;
 
+// misspell something
 class App extends StatelessWidget {
   const App({
     required ICharacterRepository characterRepository,

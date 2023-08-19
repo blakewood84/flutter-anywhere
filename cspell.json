@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  // List of the names of the dictionaries to use.
+  "dictionaries": [],
+  // List of custom dictionary definitions.
+  "dictionaryDefinitions": [],
+  // Ignores files found in .gitignore.
+  "useGitignore": true,
+  // List of allowed words that are not part of dictionaries.
+  "words": ["Contador", "localizable", "mostrado", "página", "Texto"],
+  "ignorePaths": ["*.freezed.dart"],
+  // List of not-allowed words.
+  // For example "hte" should be "the".
+  "flagWords": ["hte"]
+}

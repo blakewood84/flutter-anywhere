@@ -1,0 +1,16 @@
+name: My Workflow
+
+on: pull_request
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+    with:
+      includes: |
+        **/*.{dart,md,yaml}
+        !.dart_tool/**/*.{dart,yaml}
+        .*/**/*.yml
+      config: cspell.json
+      runs_on: macos-latest
+      modified_files_only: false
+      working_directory: lib
