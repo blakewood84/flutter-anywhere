@@ -13,4 +13,4 @@ jobs:
       config: cspell.json
       runs_on: macos-latest
       modified_files_only: false
-      working_directory: ../../lib
+      working_directory: lib
